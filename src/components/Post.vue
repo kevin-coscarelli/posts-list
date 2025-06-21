@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import editIcon from '../assets/edit.svg'
-import { ref, defineProps } from 'vue'
+import { ref, defineProps, computed } from 'vue'
 import type { Post } from '../services/useFetchPosts'
 import { useFetchPosts } from '../services/useFetchPosts'
 
@@ -19,6 +19,8 @@ function submit() {
     })
     editMode.value = false
 }
+
+const likesRatio = computed(() => (Math.round(props.reactions?.likes! * 100 / (props.reactions?.likes! + props.reactions?.dislikes!) * 100) / 100).toFixed(2))
 </script>
 <template>
     <div
@@ -37,5 +39,9 @@ function submit() {
         <p v-if="!editMode" class="text-[#83888F] text-sm overflow-ellipsis w-full line-clamp-3">{{ body }}</p>
         <textarea class="px-2 py-1 text-sm" rows="5" name="postContent" v-if="editMode" placeholder="Post content..."
             v-model="newBody" />
+        <div v-if="views && reactions && !editMode" class="flex justify-between text-xs font-black text-gray-500">
+            <span>views: {{ views }}</span>
+            <span>Overall likes: {{ likesRatio }}%</span>
+        </div>
     </div>
 </template>

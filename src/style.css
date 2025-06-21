@@ -7,7 +7,7 @@
     @apply py-2 px-4 rounded-sm cursor-pointer font-bold
 }
 body {
-    margin: .75rem
+    @apply m-2.5
 }
 html, body {
     background-color: #FAFAFA;

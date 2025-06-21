@@ -65,12 +65,20 @@ const err = ref<string | null>(null)
 const step = 20
 let total: number | null = null
 let resultCounter = 0
-let idIndex = 0
+// So IDs dont overlap
+let idIndex = 1000
+let currentQuery: null | string = null
 
 export function useFetchPosts() {
     // TODO: Add fetch retry strategy and detailed error messages
 
     const fetchPosts = async (query: string | null = null) => {
+        if (query !== currentQuery) {
+            currentQuery = query
+            total = null
+            resultCounter = 0
+            posts.value = []
+        }
         if (total && resultCounter >= total) return
         loading.value = true
         err.value = null
@@ -81,16 +89,13 @@ export function useFetchPosts() {
                     select: 'title,reactions,body,views'
                 }
             const res: { total: number, posts: Post[] } = await fetchMe({
-                path: query ? '/posts' : '/posts/search',
+                path: currentQuery?.length ? '/posts/search' : '/posts',
                 params: {
-                    ...(query && { q: query }),
+                    ...(currentQuery?.length && { q: currentQuery }),
                     ...params
                 }
             })
-            if (!total) {
-                total = res.total
-                idIndex = res.total
-            }
+            total = res.total
             posts.value = posts.value.concat(res.posts)
             resultCounter += res.posts.length
 

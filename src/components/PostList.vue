@@ -29,7 +29,8 @@ onUnmounted(() => {
     <div class="flex flex-col gap-2.5 justify-center pb-2.5">
         <Post v-if="posts.length" v-for="post in posts" :key="post.id" :body="post.body" :id="post.id"
             :title="post.title" :views="post.views" :reactions="post.reactions" />
-        <span v-if="loading">Loading more posts...</span>
-        <span v-if="err" class="font-bold text-red-500">{{ err }}</span>
+        <p v-if="posts.length === 0" class="text-xl text-center">No posts were found.</p>
+        <p v-if="loading" class="text-center">Loading more posts...</p>
+        <p v-if="err" class="font-bold text-red-500 text-center">{{ err }}</p>
     </div>
 </template>

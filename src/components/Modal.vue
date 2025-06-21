@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-// TODO: Create custom hook
 defineProps({
     showModal: Boolean
 })
@@ -17,6 +16,7 @@ const emit = defineEmits(['toggleModal'])
 </template>
 
 <style>
+/* TODO: Make this Tailwind consistent */
 .modal-overlay {
     position: fixed;
     top: 0;
