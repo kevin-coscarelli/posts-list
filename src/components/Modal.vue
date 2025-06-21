@@ -11,7 +11,6 @@ const emit = defineEmits(['toggleModal'])
         <div v-if="showModal" class="modal-overlay" @click.self="emit('toggleModal')">
             <div class="modal-content">
                 <slot></slot>
-                <!-- <button @click="emit('toggleModal')">Close</button> -->
             </div>
         </div>
     </Teleport>

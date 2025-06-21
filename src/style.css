@@ -6,6 +6,9 @@
 .btn {
     @apply py-2 px-4 rounded-sm cursor-pointer font-bold
 }
+body {
+    margin: .75rem
+}
 html, body {
     background-color: #FAFAFA;
 }
