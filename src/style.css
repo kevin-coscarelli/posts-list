@@ -1,4 +1,11 @@
 @import "tailwindcss";
 @theme {
     --font-sans: "Raleway", "sans-serif";
+    --color-primary: #3679FF;
+}
+.btn {
+    @apply py-2 px-4 rounded-sm cursor-pointer font-bold
+}
+html, body {
+    background-color: #FAFAFA;
 }
