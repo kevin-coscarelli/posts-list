@@ -67,14 +67,15 @@ let total: number | null = null
 let resultCounter = 0
 // So IDs dont overlap
 let idIndex = 1000
-let currentQuery: null | string = null
+let currentQuery: null |  string = null
 
 export function useFetchPosts() {
     // TODO: Add fetch retry strategy and detailed error messages
 
-    const fetchPosts = async (query: string | null = null) => {
-        if (query !== currentQuery) {
-            currentQuery = query
+    const fetchPosts = async (query?: string) => {
+        if ((query || query === '') && query !== currentQuery) {
+            //Keep query param for further requests and clear query param on empty string 
+            currentQuery = query === '' ? null : query
             total = null
             resultCounter = 0
             posts.value = []
