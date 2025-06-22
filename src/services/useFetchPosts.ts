@@ -95,6 +95,7 @@ export function useFetchPosts() {
                     ...params
                 }
             })
+            if (!res.posts.length) throw new Error()
             total = res.total
             posts.value = posts.value.concat(res.posts)
             resultCounter += res.posts.length
