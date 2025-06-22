@@ -1,5 +1,5 @@
 # Posts list
-You can find the app deployed at (https://kevin-coscarelli.github.io/posts-list/)[https://kevin-coscarelli.github.io/posts-list/]
+You can find the app deployed at [https://kevin-coscarelli.github.io/posts-list/](https://kevin-coscarelli.github.io/posts-list/)
 
 To run locally:
 1. Clone repo:
